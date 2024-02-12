@@ -1,0 +1,21 @@
+<h1>Listing pizzas</h1>
+ 
+<table>
+  <tr>
+    <th>Pizzas</th>
+  </tr>
+ 
+  <% @pizzas.each do |pizza| %>
+    <tr>
+      <td><%= pizza.name %></td>
+      <td><%= link_to 'Show', pizza_path(pizza) %></td>
+      <td><%= link_to 'Edit', edit_pizza_path(pizza) %></td>
+      <td><%= link_to 'Destroy', pizza_path(pizza),
+              method: :delete,
+              data: { turbo_method: :delete  } %></td>
+    </tr>
+  <% end %>
+</table>
+
+<%= link_to 'New pizza', new_pizza_path %>
+<%= link_to 'Home', '/' %>

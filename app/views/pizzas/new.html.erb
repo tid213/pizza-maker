@@ -1,0 +1,29 @@
+<h1>New Pizza</h1>
+
+<%= form_with scope: :pizza, url: pizzas_path, local: true, data: { turbo: false } do |form| %>
+    <% if @pizza.errors.any? %>
+      <div id="error_explanation">
+        <h2>
+          <%= pluralize(@pizza.errors.count, "error") %> prohibited
+          this article from being saved:
+        </h2>
+        <ul>
+          <% @pizza.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <p>
+      <%= form.label :name, "Name Pizza:" %><br>
+      <%= form.text_field :name %>
+    </p>
+   
+    <p>
+      <%= form.submit %>
+    </p>
+<% end %>
+
+<%= link_to 'Pizza list', pizzas_path %>
+<%= link_to 'Home', '/' %>

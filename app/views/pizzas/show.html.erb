@@ -1,0 +1,29 @@
+<p>
+  <strong>Pizza Name:</strong>
+  <%= @pizza.name %>
+</p>
+<strong>Toppings:</strong></br>
+<% @pizza.toppings.each do |topping| %>
+    <tr>
+        <td><%= topping.name %></td>
+        <td><%= link_to 'Edit', edit_pizza_topping_path(topping.pizza, topping) %></td>
+        <td><%= link_to 'Remove', [topping.pizza, topping],
+              method: :delete,
+              data: { turbo_method: :delete  } %></td>
+    </tr></br>
+<% end %>
+
+<h2>Add toppings:</h2>
+<%= form_with(model: [ @pizza, @pizza.toppings.build ]) do |form| %>
+    
+    <p>
+    <%= form.label :name %><br>
+    <%= form.text_field :name %>
+  </p>
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>
+
+<%= link_to 'Edit', edit_pizza_path(@pizza) %> |
+<%= link_to 'Pizza list', pizzas_path %>
